@@ -1,0 +1,64 @@
+public class Ingresso {
+    protected double valor;
+    
+    public Ingresso(double valor){
+        this.valor = valor;
+    }
+    
+    public void imprimeValor(){
+        System.out.println("Valor do ingresso: R$ " + valor);
+    }
+    
+    public class vip extends Ingresso{
+        protected double valorAdicional;
+        
+        public vip(double valor, double valorAdicional){
+            super(valor);
+            this.valorAdicional = valorAdicional;
+        }
+        public void SetValorAdicional(double valorAdicional){
+            this.valorAdicional = valorAdicional;
+        }
+        public double GetValorVip(){
+            return this.valor + this.valorAdicional;
+        }
+    }
+    public class normal extends Ingresso{
+        public normal(double valor){
+            super(valor);
+        }
+        public void imprimeIngressoNormal(){
+            System.out.println("Ingresso Normal");
+            imprimeValor();
+        }
+    }
+    public class camaroteInferior extends vip{
+        private String localizacao;
+        public camaroteInferior(double valor, double valorAdicional, String localizacao){
+            super(valor, valorAdicional);
+            this.localizacao = localizacao;
+        }
+        public void SetLocalizacao(String localizacao){
+            this.localizacao = localizacao;
+        }
+        public String Getlocalizacao(){
+            return localizacao;
+        }
+        public void imprimirLocalizacao(){
+            System.out.println("Localização Camarote Inferior:" + localizacao); 
+        } 
+    }
+    public class camaroteSuperior extends vip{
+        private double valorCamarote;
+        public camaroteSuperior(double valor, double valorAdicional, double valorCamarote){
+            super(valor, valorAdicional);
+            this.valorCamarote = valorCamarote; 
+        }
+        public void SetValorCamarote(double valorCamarote){
+            this.valorCamarote = valorCamarote;
+        }
+        public double GetValorCamarote(){
+            return GetValorVip() + this.valorCamarote;
+        }
+    }
+}
