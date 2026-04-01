@@ -1,0 +1,91 @@
+public class Funcionario {
+    private String nome;
+    private double salario;
+    
+    public Funcionario(String nome, double salario){
+        this.nome=nome;
+        if (salario>=0){
+            this.salario=salario;
+        }else{
+            this.salario=0.0;
+            System.out.println("Erro: O salário não pode ser negativo.");
+        }
+    }
+    public void addAumento(double valor){
+        if (valor >=0){
+            this.salario += valor;
+            System.out.println("O salário do funcionário"+ nome +"foi aumentado para: "
+            + this.salario);
+        }else{
+            System.out.println("Erro: O aumento do salário deve ser maior que zero.");
+        }
+    }
+    
+    public void ganhoAnual(){
+        double ganhoAnual = salario*12;
+        System.out.println("O funcionário"+ nome +"tem um ganho anual de: "
+        +ganhoAnual);
+    }
+    public void exibeDados(){
+        System.out.println("Nome: "+ nome +"Salário: " + salario);
+    }
+    public class assistente extends Funcionario{
+        private int numMatricula;
+        public assistente(String nome, double salario){
+            super(nome, salario);
+        }
+        public void SetNumMatricula(int numMatricula){
+            this.numMatricula= numMatricula;
+        }
+        public int GetNumMatricula(){
+            return numMatricula;
+        }
+        @Override
+        public void exibeDados(){
+            System.out.println("Nome: "+ nome +"Salário: " + salario +"Numéro de"
+            + "Matrícula: " + numMatricula);
+        }
+    }
+    public class tecnico extends assistente{
+        double bonusSalarial;
+        public tecnico(String nome, double salario) {
+            super(nome, salario);
+        }
+        public void SetBonusSalarial(double bonusSalarial){
+            this.bonusSalarial= bonusSalarial;
+        }
+        public double GetBonusSalarial(){
+            return bonusSalarial;
+        }
+        @Override
+        public void ganhoAnual(){
+            double ganhoAnual = ((salario*12)+bonusSalarial) ;
+            System.out.println("O funcionário"+ nome +"tem um ganho anual de: "
+            +ganhoAnual);
+    }
+    public class administrativo extends assistente{
+        boolean turno;
+        double adicionalNoturno;
+        public administrativo(String nome, double salario) {
+            super(nome, salario);    
+        }
+        public void SetAdicionalNoturno(double adicionalNoturno){
+            this.adicionalNoturno= adicionalNoturno;
+        }
+        public double GetAdicionalNoturno(){
+            return adicionalNoturno;
+        }
+        public void SetTurno(boolean turno){
+            this.turno = turno;
+        }
+        public boolean GetTurno(){
+            return turno;
+        }
+        @Override
+        public void ganhoAnual(){
+            double ganhoAnual = (salario*adicionalNoturno)*12;
+            System.out.println("O funcionário"+ nome +"tem um ganho anual de: "
+            +ganhoAnual);
+        }
+    }
+}
