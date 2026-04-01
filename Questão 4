@@ -1,0 +1,57 @@
+public abstract class Imovel {
+    protected String endereco;
+    protected double valorVenda;
+    
+    public Imovel(String endereco, double valorVenda){
+        this.endereco= endereco;
+        this.valorVenda= valorVenda;
+    }
+    
+    public String getEndereco(){
+        return endereco;
+    }
+    public double getValorVenda(){
+        return valorVenda;
+    }
+    
+    public abstract double calculoPrecoFinal();
+    
+    public String apresentarPreco(){
+        return "Endereço: " + endereco + " | Valor Base: R$" + valorVenda;
+    }
+    
+    public class imovelValorizado extends Imovel{
+        private double percentualAdicional;
+        
+        public imovelValorizado(String endereco, double valorVenda) {
+            super(endereco, valorVenda);
+            this.percentualAdicional = percentualAdicional;
+        }
+
+        @Override
+        public double calculoPrecoFinal() {
+            return getValorVenda() * (1 + (percentualAdicional / 100));
+        }
+        @Override
+        public String apresentarPreco(){
+            return super.apresentarPreco() + " | (+"+percentualAdicional+"%) Valor Final: R$" + calculoPrecoFinal();
+        }
+    }
+    public class imovelReformado extends Imovel{
+        private double valorDesconto;
+        
+        public imovelReformado(String endereco, double valorVenda) {
+            super(endereco, valorVenda);
+            this.valorDesconto = valorDesconto;
+        }
+
+        @Override
+        public double calculoPrecoFinal() {
+            return getValorVenda() - valorDesconto;
+        }
+        @Override
+        public String apresentarPreco(){
+            return super.toString() + " | (-R$"+valorDesconto+") Valor Final: R$" + calculoPrecoFinal();
+        }
+    }
+}
