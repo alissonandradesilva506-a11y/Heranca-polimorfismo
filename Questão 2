@@ -1,0 +1,141 @@
+///Letra a
+public class Animal {
+    private String nome;
+    private String raca;
+    public Animal(String nome, String raca){
+        this.nome = nome;
+        this.raca = raca;
+    }
+    public String nome(){
+        return nome;
+    }
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+    public String raca(){
+        return raca;
+    }
+    public void SetRaca(String raca){
+        this.raca = raca;
+    }
+    public void caminha(){
+        System.out.println("O animal caminha 20 metros");
+    }
+    public class cachorro extends Animal{
+        
+        public cachorro(String nome, String raca) {
+            super(nome, raca);    
+        }
+        public void late(){
+            System.out.println("Au Au.");
+        }
+    }
+    public class gato extends Animal{
+        
+        public gato(String nome, String raca) {
+            super(nome, raca);
+        }
+        public void mia(){
+            System.out.println("Miau.");
+        }
+    }
+}
+///letra b
+import java.util.ArrayList;
+import java.util.List;
+
+public class Veiculo1 {
+    private String cor;
+    private String placa;
+    
+    public Veiculo1(String cor, String placa){
+        this.cor = cor;
+        this.placa = placa;
+    }
+    public String getCor(){
+        return cor;
+    }
+    public void setCor(String cor){
+        this.cor = cor;
+    }
+    public String getPlaca(){
+        return placa;
+    }
+    public void setPlaca(String placa){
+        this.placa = placa;
+    }
+    
+    public class motocicleta extends Veiculo1{
+        public motocicleta(String cor, String placa) {
+            super(cor, placa);
+        }        
+    }
+    public class carroDePasseio extends Veiculo1{
+        public carroDePasseio(String cor, String placa) {
+            super(cor, placa);
+        }        
+    }
+    public class utilitarioEsportivo extends Veiculo1{
+        public utilitarioEsportivo(String cor, String placa) {
+            super(cor, placa);
+        }        
+    }
+    public class caminhonete extends Veiculo1{
+        public caminhonete(String cor, String placa) {
+            super(cor, placa);
+        }        
+    }
+    public class caminhao extends Veiculo1{
+        public caminhao(String cor, String placa) {
+            super(cor, placa);
+        }        
+    }
+    
+    public class atendimento{
+        private String servico;
+        private Veiculo1 veiculo;
+        
+        public atendimento(String servico, Veiculo1 veiculo){
+            this.servico = servico;
+            this.veiculo = veiculo; 
+        }
+        
+        public String getServico(){
+            return servico;
+        }
+        public void setServico(String servico){
+            this.servico = servico;
+        }
+        public Veiculo1 getVeiculo(){
+            return veiculo;
+        }
+        public void setVeiculo(Veiculo1 veiculo){
+            this.veiculo = veiculo;
+        }
+    }
+    
+    public class lavaJato {
+        private List<Atendimento> atendimentos;
+        
+        public lavaJato(){
+            this.atendimentos = new ArrayList<>();
+        }
+        
+        public void atender(String servico, Veiculo1 veiculo){
+            Atendimento novoAtendimento = new Atendimento(servico, veiculo);
+            atendimento.add(novoAtendimento);
+            System.out.println("Novo atendimento adicionado: " + servico + " para a placa " + veiculo.getPlaca());
+        }
+        public void executarProximoServico(){
+            if (!atendimentos.isEmpty()) {
+            Atendimento proximo = atendimentos.remove(0);
+            System.out.println("Executando serviço: " + proximo.getServico() + " na placa " + proximo.getVeiculo().getPlaca());
+            } else {
+                System.out.println("Nenhum serviço pendente.");
+            }
+        }
+        public List<Atendimento> getAtendimentos() {
+            return atendimentos;
+        }
+    }
+}
